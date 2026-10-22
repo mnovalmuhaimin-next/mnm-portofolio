@@ -1,10 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { 
   Download, 
   Send, 
   MapPin, 
   Mail, 
-  Phone, 
   Linkedin, 
   Globe, 
   GraduationCap, 
@@ -12,9 +11,7 @@ import {
   Code, 
   Database, 
   ArrowRight, 
-  Sparkles,
-  Camera,
-  RotateCcw
+  MessageSquare
 } from 'lucide-react';
 import { CV_DATA } from '../data/cvData';
 import confetti from 'canvas-confetti';
@@ -22,22 +19,9 @@ import confetti from 'canvas-confetti';
 interface HeroProps {
   darkMode: boolean;
   onOpenCvModal: () => void;
-  onOpenGuideModal: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ darkMode, onOpenCvModal, onOpenGuideModal }) => {
-  // State for user custom photo preview (allows instant live photo replacement)
-  const [customPhoto, setCustomPhoto] = useState<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const url = URL.createObjectURL(file);
-      setCustomPhoto(url);
-    }
-  };
-
+export const Hero: React.FC<HeroProps> = ({ darkMode, onOpenCvModal }) => {
   const handleDownloadClick = () => {
     confetti({
       particleCount: 50,
@@ -106,7 +90,7 @@ export const Hero: React.FC<HeroProps> = ({ darkMode, onOpenCvModal, onOpenGuide
               Lulusan <strong>S1 Teknik Informatika UMS (IPK 3.35/4.00)</strong> dengan keahlian dalam perancangan sistem informasi terintegrasi, arsitektur RESTful API, dan optimasi basis data relasional. Berpengalaman mandiri mengawal proyek dari riset kebutuhan hingga deployment produksi.
             </p>
 
-            {/* Quick Location & Contact Tags */}
+            {/* Quick Location & Direct Contact Action Tags */}
             <div className="flex flex-wrap items-center gap-3 pt-1 text-xs sm:text-sm">
               <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border ${
                 darkMode ? 'bg-slate-900/60 border-slate-800 text-slate-300' : 'bg-slate-100/80 border-slate-200 text-slate-700'
@@ -114,6 +98,19 @@ export const Hero: React.FC<HeroProps> = ({ darkMode, onOpenCvModal, onOpenGuide
                 <MapPin className="w-4 h-4 text-rose-500" />
                 <span>{CV_DATA.personal.location}</span>
               </div>
+
+              {/* Direct WhatsApp Redirection Button (No raw phone number exposed) */}
+              <a
+                href={CV_DATA.personal.whatsappLink}
+                target="_blank"
+                rel="noreferrer"
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-medium hover:border-emerald-500/60 transition-colors ${
+                  darkMode ? 'bg-emerald-950/30 border-emerald-500/30 text-emerald-400' : 'bg-emerald-50 border-emerald-200 text-emerald-700'
+                }`}
+              >
+                <MessageSquare className="w-4 h-4 text-emerald-400" />
+                <span>Chat via WhatsApp</span>
+              </a>
 
               <a
                 href={`mailto:${CV_DATA.personal.email}`}
@@ -139,18 +136,18 @@ export const Hero: React.FC<HeroProps> = ({ darkMode, onOpenCvModal, onOpenGuide
             </div>
 
             {/* Primary Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4 pt-3">
+            <div className="flex flex-wrap items-center gap-3 pt-3">
               <button
                 onClick={handleDownloadClick}
-                className="flex items-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-white bg-gradient-to-r from-indigo-600 via-indigo-500 to-sky-500 shadow-lg shadow-indigo-600/30 hover:shadow-indigo-600/40 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-xs sm:text-sm text-white bg-gradient-to-r from-indigo-600 via-indigo-500 to-sky-500 shadow-lg shadow-indigo-600/30 hover:shadow-indigo-600/40 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
               >
-                <Download className="w-5 h-5" />
+                <Download className="w-4 h-4" />
                 <span>Unduh / Cetak CV Resmi</span>
               </button>
 
               <button
                 onClick={() => scrollTo('kontak')}
-                className={`flex items-center gap-2 px-6 py-3.5 rounded-xl font-semibold border transition-all cursor-pointer ${
+                className={`w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-xs sm:text-sm border transition-all cursor-pointer ${
                   darkMode
                     ? 'border-slate-700 bg-slate-900/80 text-white hover:bg-slate-850 hover:border-indigo-500/40'
                     : 'border-slate-300 bg-white text-slate-800 hover:bg-slate-50 hover:border-indigo-300 shadow-sm'
@@ -162,7 +159,7 @@ export const Hero: React.FC<HeroProps> = ({ darkMode, onOpenCvModal, onOpenGuide
 
               <button
                 onClick={() => scrollTo('pengalaman')}
-                className={`flex items-center gap-1.5 text-sm font-semibold hover:underline px-2 py-1 transition-colors ${
+                className={`inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold hover:underline px-2 py-1 transition-colors cursor-pointer ${
                   darkMode ? 'text-indigo-400 hover:text-indigo-300' : 'text-indigo-600 hover:text-indigo-700'
                 }`}
               >
@@ -197,7 +194,7 @@ export const Hero: React.FC<HeroProps> = ({ darkMode, onOpenCvModal, onOpenGuide
 
           </div>
 
-          {/* Right Column: Profile Photo Card & Floating Accents */}
+          {/* Right Column: Permanent Locked Profile Photo Card */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
             <div className="relative w-full max-w-[360px] sm:max-w-[400px]">
               
@@ -224,95 +221,14 @@ export const Hero: React.FC<HeroProps> = ({ darkMode, onOpenCvModal, onOpenGuide
                   </div>
                 </div>
 
-                {/* 
-                  ========================================================================
-                  <!-- Ganti dengan foto Anda nanti -->
-                  KOMENTAR KODE:
-                  Untuk mengganti foto profil Anda secara permanen:
-                  1. Masukkan file foto Anda ke folder `/public/foto-noval.jpg` atau `/src/assets/foto-noval.jpg`
-                  2. Ubah atribut `src` pada tag <img> di bawah menjadi URL foto Anda.
-                  3. Atau Anda dapat menggunakan tombol "Unggah Foto Anda" di bawah ini 
-                     untuk langsung mempratinjau foto Anda secara interaktif di browser!
-                  ========================================================================
-                */}
-                <div className="relative mt-4 mb-4 rounded-xl overflow-hidden aspect-[4/5] bg-gradient-to-b from-indigo-950/50 to-slate-950 flex flex-col items-center justify-center border border-indigo-500/20 group">
-                  
-                  {customPhoto ? (
-                    <img 
-                      src={customPhoto} 
-                      alt="Muhammad Noval Muhaimin" 
-                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                    />
-                  ) : (
-                    /* Default stylized avatar placeholder if no custom image is loaded */
-                    <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center relative overflow-hidden bg-gradient-to-tr from-slate-900 via-indigo-950/70 to-slate-900">
-                      
-                      {/* Grid Pattern in Avatar Background */}
-                      <div className="absolute inset-0 bg-[radial-gradient(#6366f1_1px,transparent_1px)] [background-size:16px_16px] opacity-25" />
-                      
-                      {/* Monogram / Avatar Graphic */}
-                      <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-2xl bg-gradient-to-br from-indigo-500 via-indigo-600 to-sky-400 p-[3px] shadow-xl shadow-indigo-600/30 mb-4 group-hover:scale-105 transition-transform">
-                        <div className="w-full h-full rounded-[13px] bg-slate-950 flex flex-col items-center justify-center text-white">
-                          <span className="font-mono text-3xl sm:text-4xl font-extrabold bg-gradient-to-br from-white via-indigo-200 to-sky-300 bg-clip-text text-transparent">
-                            MNM
-                          </span>
-                          <span className="text-[10px] tracking-widest uppercase text-indigo-400 font-mono mt-0.5">
-                            SURAKARTA
-                          </span>
-                        </div>
-                      </div>
-
-                      <div className="relative z-10 space-y-1">
-                        <h4 className="font-bold text-base text-white">Muhammad Noval Muhaimin</h4>
-                        <p className="text-xs text-indigo-300 font-medium">S1 Teknik Informatika • UMS</p>
-                        <p className="text-[11px] text-slate-400 max-w-[220px] mx-auto pt-1">
-                          Fullstack Developer | Laravel, Next.js, PostgreSQL & Manajemen Data
-                        </p>
-                      </div>
-
-                      {/* Explicit marker for replacement */}
-                      <div className="absolute bottom-2 left-2 right-2 text-center py-1 px-2 rounded-md bg-indigo-950/80 border border-indigo-500/30 text-[10px] text-indigo-200">
-                        {/* <!-- Ganti dengan foto Anda nanti --> */}
-                        Klik "Unggah Foto Anda" di bawah untuk melihat foto asli
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Hidden file input for uploading custom photo in browser */}
-                  <input
-                    type="file"
-                    ref={fileInputRef}
-                    onChange={handlePhotoUpload}
-                    accept="image/*"
-                    className="hidden"
+                {/* Permanent Locked Profile Photo */}
+                <div className="relative mt-4 mb-4 rounded-xl overflow-hidden aspect-[4/5] bg-gradient-to-b from-slate-900 to-slate-950 flex flex-col items-center justify-center border border-indigo-500/20 shadow-inner group">
+                  <img 
+                    src="/foto-noval.png" 
+                    alt="Muhammad Noval Muhaimin" 
+                    className="w-full h-full object-cover object-[center_15%] transition-transform duration-700 group-hover:scale-105"
                   />
-                </div>
-
-                {/* Photo replacement helper buttons */}
-                <div className="flex items-center gap-2 mb-3">
-                  <button
-                    onClick={() => fileInputRef.current?.click()}
-                    className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-medium border transition-colors ${
-                      darkMode 
-                        ? 'border-indigo-500/30 bg-indigo-500/10 text-indigo-300 hover:bg-indigo-500/20' 
-                        : 'border-indigo-200 bg-indigo-50 text-indigo-700 hover:bg-indigo-100'
-                    }`}
-                  >
-                    <Camera className="w-3.5 h-3.5" />
-                    <span>{customPhoto ? 'Ganti Foto Lain' : 'Unggah Foto Anda'}</span>
-                  </button>
-
-                  {customPhoto && (
-                    <button
-                      onClick={() => setCustomPhoto(null)}
-                      title="Kembali ke avatar default"
-                      className={`p-1.5 rounded-lg border text-xs ${
-                        darkMode ? 'border-slate-700 text-slate-400 hover:text-white' : 'border-slate-300 text-slate-600'
-                      }`}
-                    >
-                      <RotateCcw className="w-3.5 h-3.5" />
-                    </button>
-                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-80 pointer-events-none" />
                 </div>
 
                 {/* Stack Badges at bottom of card */}
@@ -322,15 +238,15 @@ export const Hero: React.FC<HeroProps> = ({ darkMode, onOpenCvModal, onOpenGuide
                     <span className="font-semibold text-indigo-400">Laravel • Next.js • PostgreSQL</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className={`font-medium ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>IPK / Predikat:</span>
-                    <span className="font-semibold text-emerald-400">3.35 / 4.00 (Sangat Memuaskan)</span>
+                    <span className={`font-medium ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>Pendidikan:</span>
+                    <span className="font-semibold text-emerald-400">S1 Teknik Informatika UMS</span>
                   </div>
                 </div>
 
               </div>
 
-              {/* Floating Highlight 1: Education */}
-              <div className={`hidden sm:flex absolute -left-6 top-1/4 -translate-y-1/2 items-center gap-2.5 p-2.5 rounded-xl border backdrop-blur-md shadow-xl ${
+              {/* Floating Highlight 1: Education (no IPK) */}
+              <div className={`hidden md:flex absolute -left-6 top-1/4 -translate-y-1/2 items-center gap-2.5 p-2.5 rounded-xl border backdrop-blur-md shadow-xl ${
                 darkMode ? 'bg-slate-900/90 border-slate-700 text-white' : 'bg-white/95 border-slate-200 text-slate-900'
               }`}>
                 <div className="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center">
@@ -338,12 +254,12 @@ export const Hero: React.FC<HeroProps> = ({ darkMode, onOpenCvModal, onOpenGuide
                 </div>
                 <div>
                   <div className="text-[11px] font-bold">Teknik Informatika UMS</div>
-                  <div className="text-[10px] text-emerald-400 font-semibold">IPK 3.35 / 4.00</div>
+                  <div className="text-[10px] text-emerald-400 font-semibold">Sarjana Komputer (S.Kom)</div>
                 </div>
               </div>
 
               {/* Floating Highlight 2: Modern Stack */}
-              <div className={`hidden sm:flex absolute -right-6 bottom-12 items-center gap-2.5 p-2.5 rounded-xl border backdrop-blur-md shadow-xl ${
+              <div className={`hidden md:flex absolute -right-6 bottom-12 items-center gap-2.5 p-2.5 rounded-xl border backdrop-blur-md shadow-xl ${
                 darkMode ? 'bg-slate-900/90 border-slate-700 text-white' : 'bg-white/95 border-slate-200 text-slate-900'
               }`}>
                 <div className="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center">

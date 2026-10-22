@@ -1,21 +1,17 @@
 import React from 'react';
 import { 
   ArrowUp, 
-  Heart, 
   Linkedin, 
   Mail, 
-  Globe, 
-  MessageSquare,
-  Code2
+  MessageSquare
 } from 'lucide-react';
 import { CV_DATA } from '../data/cvData';
 
 interface FooterProps {
   darkMode: boolean;
-  onOpenGuideModal: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ darkMode, onOpenGuideModal }) => {
+export const Footer: React.FC<FooterProps> = ({ darkMode }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -44,26 +40,14 @@ export const Footer: React.FC<FooterProps> = ({ darkMode, onOpenGuideModal }) =>
             </p>
           </div>
 
-          {/* Quick Links & Next.js Guide CTA */}
+          {/* Direct Social Links */}
           <div className="md:col-span-6 flex flex-wrap items-center md:justify-end gap-3">
-            <button
-              onClick={onOpenGuideModal}
-              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold border transition-all cursor-pointer ${
-                darkMode
-                  ? 'border-indigo-500/30 bg-indigo-500/10 text-indigo-300 hover:bg-indigo-500/20'
-                  : 'border-indigo-200 bg-white text-indigo-700 hover:bg-indigo-50'
-              }`}
-            >
-              <Code2 className="w-3.5 h-3.5" />
-              <span>Panduan Next.js & Deploy Vercel</span>
-            </button>
-
             <a
               href={CV_DATA.personal.whatsappLink}
               target="_blank"
               rel="noreferrer"
               className="p-2.5 rounded-xl border border-slate-700 hover:border-emerald-500/40 hover:text-emerald-400 transition-colors"
-              title="WhatsApp"
+              title="Hubungi via WhatsApp"
             >
               <MessageSquare className="w-4 h-4" />
             </a>
@@ -71,7 +55,7 @@ export const Footer: React.FC<FooterProps> = ({ darkMode, onOpenGuideModal }) =>
             <a
               href={`mailto:${CV_DATA.personal.email}`}
               className="p-2.5 rounded-xl border border-slate-700 hover:border-indigo-500/40 hover:text-indigo-400 transition-colors"
-              title="Email"
+              title="Kirim Email"
             >
               <Mail className="w-4 h-4" />
             </a>
@@ -81,7 +65,7 @@ export const Footer: React.FC<FooterProps> = ({ darkMode, onOpenGuideModal }) =>
               target="_blank"
               rel="noreferrer"
               className="p-2.5 rounded-xl border border-slate-700 hover:border-sky-500/40 hover:text-sky-400 transition-colors"
-              title="LinkedIn"
+              title="LinkedIn Profile"
             >
               <Linkedin className="w-4 h-4" />
             </a>
@@ -105,7 +89,7 @@ export const Footer: React.FC<FooterProps> = ({ darkMode, onOpenGuideModal }) =>
             © {new Date().getFullYear()} {CV_DATA.personal.fullName}. Hak Cipta Dilindungi.
           </div>
           <div className="flex items-center gap-2">
-            <span>Dirancang dengan Next.js, Tailwind CSS & Framer Motion</span>
+            <span>Portfolio Profesional</span>
             <span>•</span>
             <span className="text-indigo-400 font-medium">mnm-project.site</span>
           </div>

@@ -12,7 +12,8 @@ import {
   Briefcase, 
   Award, 
   CheckCircle2,
-  Share2
+  Share2,
+  MessageSquare
 } from 'lucide-react';
 import { CV_DATA } from '../data/cvData';
 import confetti from 'canvas-confetti';
@@ -124,10 +125,15 @@ export const CvPreviewModal: React.FC<CvPreviewModalProps> = ({ isOpen, onClose,
                   {CV_DATA.personal.email}
                 </span>
                 <span>•</span>
-                <span className="flex items-center gap-1">
-                  <Phone className="w-3.5 h-3.5 text-indigo-600" />
-                  {CV_DATA.personal.phone}
-                </span>
+                <a
+                  href={CV_DATA.personal.whatsappLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-1 text-emerald-700 hover:underline"
+                >
+                  <MessageSquare className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>WhatsApp (Chat Langsung)</span>
+                </a>
                 <span>•</span>
                 <span className="flex items-center gap-1">
                   <Linkedin className="w-3.5 h-3.5 text-indigo-600" />

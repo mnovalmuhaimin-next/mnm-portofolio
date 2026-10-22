@@ -8,7 +8,6 @@ import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { ProjectDetailModal } from './components/ProjectDetailModal';
 import { CvPreviewModal } from './components/CvPreviewModal';
-import { NextjsVercelGuideModal } from './components/NextjsVercelGuideModal';
 import { ExperienceItem } from './data/cvData';
 
 export default function App() {
@@ -23,7 +22,6 @@ export default function App() {
 
   const [selectedProject, setSelectedProject] = useState<ExperienceItem | null>(null);
   const [cvModalOpen, setCvModalOpen] = useState(false);
-  const [guideModalOpen, setGuideModalOpen] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('mnm_theme', darkMode ? 'dark' : 'light');
@@ -49,7 +47,6 @@ export default function App() {
         darkMode={darkMode}
         setDarkMode={setDarkMode}
         onOpenCvModal={() => setCvModalOpen(true)}
-        onOpenGuideModal={() => setGuideModalOpen(true)}
       />
 
       {/* Main Content Area */}
@@ -57,7 +54,6 @@ export default function App() {
         <Hero
           darkMode={darkMode}
           onOpenCvModal={() => setCvModalOpen(true)}
-          onOpenGuideModal={() => setGuideModalOpen(true)}
         />
 
         <AboutSection
@@ -78,7 +74,6 @@ export default function App() {
       {/* Footer */}
       <Footer
         darkMode={darkMode}
-        onOpenGuideModal={() => setGuideModalOpen(true)}
       />
 
       {/* Interactive Modals */}
@@ -91,12 +86,6 @@ export default function App() {
       <CvPreviewModal
         isOpen={cvModalOpen}
         onClose={() => setCvModalOpen(false)}
-        darkMode={darkMode}
-      />
-
-      <NextjsVercelGuideModal
-        isOpen={guideModalOpen}
-        onClose={() => setGuideModalOpen(false)}
         darkMode={darkMode}
       />
     </div>

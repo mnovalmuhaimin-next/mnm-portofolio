@@ -104,7 +104,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ darkMode }) => {
                   <div>
                     <h3 className="font-bold text-sm text-emerald-400">WhatsApp Langsung</h3>
                     <p className={`text-xs ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
-                      {CV_DATA.personal.phoneFormatted}
+                      Respons cepat untuk rekrutmen & proyek
                     </p>
                   </div>
                 </div>
@@ -113,25 +113,17 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ darkMode }) => {
                 </span>
               </div>
 
-              <div className="flex items-center gap-2 mt-4">
+              <div className="mt-4">
                 <a
                   href={CV_DATA.personal.whatsappLink}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-bold bg-emerald-600 text-white hover:bg-emerald-500 transition-colors shadow-sm"
+                  className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-bold bg-emerald-600 text-white hover:bg-emerald-500 transition-colors shadow-sm"
                 >
-                  <span>Chat di WhatsApp</span>
+                  <MessageSquare className="w-4 h-4" />
+                  <span>Buka Chat di WhatsApp</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
-                <button
-                  onClick={() => handleCopy(CV_DATA.personal.phone, 'wa')}
-                  className={`p-2 rounded-xl border text-xs transition-colors ${
-                    darkMode ? 'border-slate-700 hover:bg-slate-800 text-slate-300' : 'border-slate-200 hover:bg-white text-slate-700'
-                  }`}
-                  title="Salin Nomor"
-                >
-                  {copiedType === 'wa' ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
-                </button>
               </div>
             </div>
 
