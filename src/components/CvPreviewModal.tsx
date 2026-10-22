@@ -72,12 +72,23 @@ export const CvPreviewModal: React.FC<CvPreviewModalProps> = ({ isOpen, onClose,
           </div>
 
           <div className="flex items-center gap-2">
+            <a
+              href="/CV_Muhammad_Noval_Muhaimin.pdf"
+              download="CV_Muhammad_Noval_Muhaimin.pdf"
+              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-600 text-white hover:bg-emerald-500 transition-colors shadow-sm"
+              title="Unduh file PDF resmi asli"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Unduh PDF Resmi</span>
+              <span className="sm:hidden">PDF</span>
+            </a>
+
             <button
               onClick={handlePrint}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 text-white hover:bg-indigo-500 transition-colors cursor-pointer shadow-md shadow-indigo-600/30"
+              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-indigo-600 text-white hover:bg-indigo-500 transition-colors cursor-pointer shadow-md shadow-indigo-600/30"
             >
-              <Printer className="w-4 h-4" />
-              <span>Cetak / Simpan PDF</span>
+              <Printer className="w-3.5 h-3.5" />
+              <span>Cetak</span>
             </button>
 
             <button
@@ -160,23 +171,23 @@ export const CvPreviewModal: React.FC<CvPreviewModalProps> = ({ isOpen, onClose,
             {/* Main Competencies */}
             <div className="mb-6">
               <h2 className="text-xs font-extrabold uppercase tracking-widest text-indigo-700 border-b border-slate-200 pb-1 mb-2.5">
-                Kompetensi Utama
+                Technical Skills & Pengalaman
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-slate-800">
                 <div>
-                  <strong className="text-slate-950 font-bold">Web Development:</strong> Laravel, PHP, Next.js, React.js, REST API, Tailwind CSS, TypeScript
+                  <strong className="text-slate-950 font-bold">Web Development:</strong> Laravel (± 2 thn), PHP (± 2 thn), Next.js (± 1 thn), React.js (± 1 thn), REST API (± 2 thn)
                 </div>
                 <div>
-                  <strong className="text-slate-950 font-bold">Database & Security:</strong> PostgreSQL, MySQL, Laravel Sanctum, Role & Permission (RBAC)
+                  <strong className="text-slate-950 font-bold">Database & Access:</strong> PostgreSQL (± 1 thn), MySQL (± 2 thn), Sanctum (± 1 thn), Role/Permission (± 1 thn)
                 </div>
                 <div>
-                  <strong className="text-slate-950 font-bold">Testing & Dokumentasi:</strong> Functional Testing, Debugging, API Docs (Postman), Git/GitLab
+                  <strong className="text-slate-950 font-bold">Testing & Tools:</strong> Functional Testing & Debugging (± 2 thn), Git/GitLab (± 2 thn), Android Studio (± 1-2 thn), API Docs
                 </div>
                 <div>
-                  <strong className="text-slate-950 font-bold">Administrasi & Data:</strong> Data Entry, Data Validation, Document Management, Reporting, Sensus BPS
+                  <strong className="text-slate-950 font-bold">Administrasi & Data:</strong> Data Entry & Validation, Document Management, Reporting, Microsoft Office
                 </div>
                 <div>
-                  <strong className="text-slate-950 font-bold">Tools & Desain:</strong> Microsoft Excel, Word, PowerPoint, Android Studio, Figma, Canva
+                  <strong className="text-slate-950 font-bold">Desain & Kreatif:</strong> Figma (± 1-2 thn), Canva (± 1-2 thn), UI Wireframing
                 </div>
               </div>
             </div>

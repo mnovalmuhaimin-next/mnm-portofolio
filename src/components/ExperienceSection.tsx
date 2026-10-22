@@ -7,9 +7,7 @@ import {
   Calendar, 
   MapPin, 
   CheckCircle2, 
-  ExternalLink, 
-  ChevronRight, 
-  Sparkles,
+  ArrowRight,
   Layers
 } from 'lucide-react';
 import { CV_DATA, ExperienceItem } from '../data/cvData';
@@ -30,9 +28,9 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ darkMode, 
   const getCategoryBadge = (cat: string) => {
     switch (cat) {
       case 'work':
-        return { label: 'Pengalaman Kerja', color: 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20' };
+        return { label: 'Kerja', color: 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20' };
       case 'project':
-        return { label: 'Proyek Pilihan', color: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' };
+        return { label: 'Proyek', color: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' };
       case 'organization':
         return { label: 'Organisasi', color: 'bg-amber-500/10 text-amber-400 border-amber-500/20' };
       case 'certification':
@@ -43,54 +41,50 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ darkMode, 
   };
 
   return (
-    <section id="pengalaman" className="py-20 relative">
+    <section id="pengalaman" className="py-16 sm:py-20 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="max-w-3xl mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md text-xs font-mono font-semibold tracking-wider uppercase mb-3 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+        <div className="max-w-2xl mb-8">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md text-xs font-mono font-semibold tracking-wider uppercase mb-2 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
             <Briefcase className="w-3.5 h-3.5" />
-            <span>Rekam Jejak Profesional</span>
+            <span>Pengalaman & Proyek</span>
           </div>
-          <h2 className={`text-3xl sm:text-4xl font-extrabold tracking-tight ${
+          <h2 className={`text-2xl sm:text-3xl font-extrabold tracking-tight ${
             darkMode ? 'text-white' : 'text-slate-900'
           }`}>
-            Pengalaman Kerja, Proyek Unggulan & Organisasi
+            Riwayat Ringkas & Portofolio
           </h2>
-          <p className={`mt-3 text-base sm:text-lg leading-relaxed ${
-            darkMode ? 'text-slate-300' : 'text-slate-600'
-          }`}>
-            Riwayat kontribusi nyata dalam pengembangan sistem informasi institusi, proyek mandiri, survei data nasional, dan kepemimpinan organisasi.
+          <p className={`mt-2 text-xs sm:text-sm ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+            Ringkasan poin penting pada proyek dan pengalaman kerja. Klik kartu untuk melihat rincian lengkap.
           </p>
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex flex-wrap items-center gap-2 mb-10 pb-2 border-b border-slate-800/40 dark:border-slate-800">
+        <div className="flex flex-wrap items-center gap-1.5 mb-8 pb-2 border-b border-slate-800/40 dark:border-slate-800">
           {[
-            { id: 'all', label: 'Semua Riwayat', icon: Layers, count: CV_DATA.experiences.length },
-            { id: 'work', label: 'Pengalaman Kerja', icon: Briefcase, count: CV_DATA.experiences.filter(x => x.category === 'work').length },
-            { id: 'project', label: 'Proyek Pilihan', icon: FolderGit2, count: CV_DATA.experiences.filter(x => x.category === 'project').length },
-            { id: 'organization', label: 'Organisasi', icon: Users, count: CV_DATA.experiences.filter(x => x.category === 'organization').length },
-            { id: 'certification', label: 'Sertifikasi', icon: Award, count: CV_DATA.experiences.filter(x => x.category === 'certification').length },
+            { id: 'all', label: 'Semua', count: CV_DATA.experiences.length },
+            { id: 'work', label: 'Pengalaman Kerja', count: CV_DATA.experiences.filter(x => x.category === 'work').length },
+            { id: 'project', label: 'Proyek Pilihan', count: CV_DATA.experiences.filter(x => x.category === 'project').length },
+            { id: 'organization', label: 'Organisasi', count: CV_DATA.experiences.filter(x => x.category === 'organization').length },
+            { id: 'certification', label: 'Sertifikasi', count: CV_DATA.experiences.filter(x => x.category === 'certification').length },
           ].map((tab) => {
-            const Icon = tab.icon;
             const isCurrent = activeTab === tab.id;
             return (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                   isCurrent
-                    ? 'bg-gradient-to-r from-indigo-600 to-sky-600 text-white shadow-md shadow-indigo-600/25'
+                    ? 'bg-indigo-600 text-white shadow-sm'
                     : darkMode
                     ? 'text-slate-400 hover:text-white hover:bg-slate-900'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                 }`}
               >
-                <Icon className="w-4 h-4" />
                 <span>{tab.label}</span>
                 <span className={`px-1.5 py-0.2 rounded-full text-[10px] ${
-                  isCurrent ? 'bg-white/20 text-white' : 'bg-slate-800 text-slate-300'
+                  isCurrent ? 'bg-white/20 text-white' : 'bg-slate-800 text-slate-400'
                 }`}>
                   {tab.count}
                 </span>
@@ -99,123 +93,83 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ darkMode, 
           })}
         </div>
 
-        {/* Timeline / Cards Container */}
-        <div className="space-y-6">
+        {/* Clean, Bite-Sized Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {filteredItems.map((item) => {
             const badge = getCategoryBadge(item.category);
             return (
               <div
                 key={item.id}
-                className={`p-6 sm:p-8 rounded-2xl border transition-all duration-300 relative group hover:border-indigo-500/50 ${
-                  item.featured
-                    ? darkMode
-                      ? 'bg-gradient-to-br from-slate-900/90 via-slate-900/60 to-slate-950 border-slate-700/80 shadow-lg'
-                      : 'bg-gradient-to-br from-indigo-50/40 via-white to-slate-50 border-slate-300 shadow-md'
-                    : darkMode
-                    ? 'bg-slate-900/50 border-slate-800/80'
-                    : 'bg-white border-slate-200'
+                onClick={() => onSelectProject(item)}
+                className={`p-5 rounded-2xl border transition-all cursor-pointer group flex flex-col justify-between ${
+                  darkMode
+                    ? 'bg-slate-900/50 border-slate-800/80 hover:border-indigo-500/50 hover:bg-slate-900/80'
+                    : 'bg-white border-slate-200 hover:border-indigo-300 hover:shadow-md'
                 }`}
               >
-                {/* Top Badge & Date Row */}
-                <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-                  <div className="flex items-center gap-2.5">
-                    <span className={`px-2.5 py-1 rounded-md text-xs font-semibold border ${badge.color}`}>
-                      {badge.label}
-                    </span>
-                    {item.status && (
-                      <span className="px-2.5 py-1 rounded-md text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1">
-                        <CheckCircle2 className="w-3 h-3" />
-                        {item.status}
+                <div>
+                  {/* Top Header Row */}
+                  <div className="flex items-center justify-between gap-2 mb-2.5">
+                    <div className="flex items-center gap-2">
+                      <span className={`px-2 py-0.5 rounded text-[10px] font-semibold border ${badge.color}`}>
+                        {badge.label}
                       </span>
-                    )}
-                    {item.featured && (
-                      <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-semibold text-amber-400">
-                        <Sparkles className="w-3.5 h-3.5" />
-                        Featured
-                      </span>
-                    )}
-                  </div>
-
-                  <div className="flex items-center gap-3 text-xs sm:text-sm font-medium">
-                    <span className={`flex items-center gap-1.5 ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
-                      <Calendar className="w-4 h-4 text-indigo-400" />
+                      {item.status && (
+                        <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                          {item.status}
+                        </span>
+                      )}
+                    </div>
+                    <span className={`text-[11px] font-medium flex items-center gap-1 ${
+                      darkMode ? 'text-slate-400' : 'text-slate-500'
+                    }`}>
+                      <Calendar className="w-3 h-3 text-indigo-400" />
                       {item.period}
                     </span>
-                    <span className={`flex items-center gap-1.5 ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
-                      <MapPin className="w-4 h-4 text-rose-400" />
-                      {item.location}
-                    </span>
                   </div>
-                </div>
 
-                {/* Title & Role */}
-                <div className="mb-4">
-                  <h3 className={`text-xl sm:text-2xl font-bold tracking-tight mb-1 ${
+                  {/* Title & Role */}
+                  <h3 className={`text-base font-bold tracking-tight group-hover:text-indigo-400 transition-colors ${
                     darkMode ? 'text-white' : 'text-slate-900'
                   }`}>
                     {item.title}
                   </h3>
-                  <div className="flex flex-wrap items-center gap-2 text-sm sm:text-base font-semibold">
-                    <span className="text-indigo-400">{item.roleOrDegree}</span>
-                    <span className={darkMode ? 'text-slate-600' : 'text-slate-300'}>•</span>
-                    <span className={darkMode ? 'text-slate-200' : 'text-slate-700'}>{item.organization}</span>
+                  <div className="text-xs font-medium text-indigo-400 mt-0.5 mb-2.5">
+                    {item.roleOrDegree} • <span className={darkMode ? 'text-slate-300' : 'text-slate-600'}>{item.organization}</span>
                   </div>
+
+                  {/* Poin Penting Ringkas (1 kalimat saja di homepage) */}
+                  <p className={`text-xs leading-relaxed line-clamp-2 mb-4 ${
+                    darkMode ? 'text-slate-400' : 'text-slate-600'
+                  }`}>
+                    {item.summary}
+                  </p>
                 </div>
 
-                {/* Bullet Points */}
-                <ul className="space-y-2 mb-6">
-                  {item.description.map((desc, dIdx) => (
-                    <li key={dIdx} className="flex items-start gap-2.5 text-sm sm:text-base leading-relaxed">
-                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0 mt-2.5" />
-                      <span className={darkMode ? 'text-slate-300' : 'text-slate-600'}>{desc}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Metrics Highlight Strip (If any) */}
-                {item.metrics && item.metrics.length > 0 && (
-                  <div className={`grid grid-cols-2 sm:grid-cols-3 gap-3 p-3.5 rounded-xl mb-6 ${
-                    darkMode ? 'bg-slate-950/60 border border-slate-800' : 'bg-slate-50 border border-slate-200/80'
-                  }`}>
-                    {item.metrics.map((m, mIdx) => (
-                      <div key={mIdx}>
-                        <div className={`text-[11px] font-medium ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
-                          {m.label}
-                        </div>
-                        <div className={`text-xs sm:text-sm font-bold ${darkMode ? 'text-indigo-300' : 'text-indigo-600'}`}>
-                          {m.value}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                {/* Skills Tags & Action */}
-                <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-800/40 dark:border-slate-800">
-                  <div className="flex flex-wrap items-center gap-1.5">
-                    {item.skills.map((sk, sIdx) => (
+                {/* Footer: Skills Tags & Detail CTA */}
+                <div className="pt-3 border-t border-slate-800/40 dark:border-slate-800 flex items-center justify-between gap-2 text-xs">
+                  <div className="flex flex-wrap gap-1">
+                    {item.skills.slice(0, 3).map((sk, sIdx) => (
                       <span
                         key={sIdx}
-                        className={`px-2.5 py-1 rounded-md text-xs font-mono font-medium ${
+                        className={`px-2 py-0.5 rounded text-[10px] font-mono ${
                           darkMode ? 'bg-slate-800/80 text-slate-300' : 'bg-slate-100 text-slate-700'
                         }`}
                       >
-                        #{sk}
+                        {sk}
                       </span>
                     ))}
+                    {item.skills.length > 3 && (
+                      <span className={`px-1.5 py-0.5 text-[10px] ${darkMode ? 'text-slate-500' : 'text-slate-400'}`}>
+                        +{item.skills.length - 3}
+                      </span>
+                    )}
                   </div>
 
-                  <button
-                    onClick={() => onSelectProject(item)}
-                    className={`inline-flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-lg border transition-all cursor-pointer ${
-                      darkMode
-                        ? 'border-indigo-500/30 text-indigo-300 hover:bg-indigo-500/10'
-                        : 'border-indigo-200 text-indigo-700 hover:bg-indigo-50'
-                    }`}
-                  >
-                    <span>Detail Informasi</span>
-                    <ChevronRight className="w-3.5 h-3.5" />
-                  </button>
+                  <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-indigo-400 group-hover:translate-x-0.5 transition-transform shrink-0">
+                    <span>Lihat Detail</span>
+                    <ArrowRight className="w-3 h-3" />
+                  </span>
                 </div>
 
               </div>

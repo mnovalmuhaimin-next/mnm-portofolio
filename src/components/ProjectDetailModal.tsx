@@ -152,7 +152,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ item, on
               <Sparkles className="w-3.5 h-3.5 text-amber-400" />
               Nilai Tambah & Rekam Jejak
             </span>
-            Proyek ini mencerminkan kompetensi teknis Muhammad Noval Muhaimin dalam memetakan kebutuhan pengguna ke dalam arsitektur perangkat lunak yang andal, scalable, dan terdokumentasi rapi.
+            Proyek ini mencerminkan pengalaman praktis Muhammad Noval Muhaimin dalam pengembangan sistem informasi web dan pengelolaan data terstruktur.
           </div>
         </div>
 

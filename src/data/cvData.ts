@@ -7,7 +7,8 @@ export interface ExperienceItem {
   period: string;
   location: string;
   status?: string;
-  description: string[];
+  summary: string; // Poin ringkas untuk homepage
+  description: string[]; // Rincian lengkap untuk modal detail
   skills: string[];
   featured?: boolean;
   link?: string;
@@ -18,12 +19,11 @@ export interface SkillCategory {
   id: string;
   name: string;
   iconName: string;
-  description: string;
   items: {
     name: string;
-    level: 'Expert' | 'Advanced' | 'Intermediate' | 'Familiar';
+    level: string;
+    experience: string;
     highlight?: boolean;
-    description?: string;
   }[];
 }
 
@@ -32,7 +32,7 @@ export const CV_DATA = {
     fullName: "Muhammad Noval Muhaimin",
     nickname: "Noval",
     title: "Fullstack Developer | Administrasi Sistem | Data Management",
-    tagline: "Membangun sistem informasi tangguh dari perancangan hingga deployment, memadukan keahlian Fullstack web modern dengan manajemen data yang presisi.",
+    tagline: "Mengembangkan sistem informasi web dan tata kelola data yang terstruktur.",
     location: "Surakarta, Jawa Tengah, Indonesia",
     email: "mnovalmuhaimin@gmail.com",
     phone: "Tersedia via WhatsApp",
@@ -43,7 +43,7 @@ export const CV_DATA = {
     portfolioUrl: "https://mnm-project.site",
     portfolioDomain: "mnm-project.site",
     statusBadge: "Terbuka untuk Peluang Kerja & Kolaborasi",
-    bio: "Lulusan S1 Teknik Informatika Universitas Muhammadiyah Surakarta (IPK 3.35/4.00) dengan pengalaman komprehensif mengembangkan sistem informasi berbasis web, mengelola basis data relasional, serta mendukung proses administrasi digital. Terbiasa bekerja mandiri secara end-to-end mulai dari analisis kebutuhan bisnis, perancangan arsitektur, implementasi frontend & backend, penulisan pengujian fungsional, hingga koordinasi deployment produksi.",
+    bio: "Lulusan S1 Teknik Informatika Universitas Muhammadiyah Surakarta dengan pengalaman awal hingga menengah dalam pengembangan sistem informasi web (Laravel, Next.js, PostgreSQL) serta pengelolaan data dan administrasi digital.",
     gpa: "3.35 / 4.00",
     education: {
       degree: "S1 Teknik Informatika",
@@ -53,82 +53,75 @@ export const CV_DATA = {
       thesis: "Sistem Hybrid Manajemen Zakat Lazismu (Web & Mobile)"
     },
     languages: [
-      { name: "Bahasa Indonesia", level: "Penutur Asli / Fasih (Native)" },
-      { name: "Bahasa Inggris", level: "Menengah (Intermediate / Professional Working)" }
+      { name: "Bahasa Indonesia", level: "Fasih (Native)" },
+      { name: "Bahasa Inggris", level: "Menengah (Intermediate)" }
     ]
   },
 
   stats: [
-    { label: "IPK Kelulusan S1", value: "3.35", suffix: "/4.00", description: "Teknik Informatika UMS" },
-    { label: "Proyek Sistem Informasi", value: "6+", suffix: "", description: "Web, Mobile & Data Management" },
-    { label: "Pengalaman Kerja & Magang", value: "4", suffix: " Posisi", description: "Fullstack, Sensus BPS & Android" },
-    { label: "Pengalaman Organisasi", value: "4+", suffix: " Tahun", description: "Kepemimpinan di PDPM & IMM" }
+    { label: "Pendidikan", value: "S1 Informatika", suffix: "", description: "Univ. Muhammadiyah Surakarta" },
+    { label: "Proyek Selesai", value: "5+", suffix: " Proyek", description: "Web, Mobile & Basis Data" },
+    { label: "Pengalaman Kerja", value: "4", suffix: " Peran", description: "Fullstack, BPS & Mobile" },
+    { label: "Organisasi", value: "4+", suffix: " Tahun", description: "PDPM Wonogiri & IMM" }
   ],
 
   skillCategories: [
     {
       id: "web-dev",
-      name: "Web & Fullstack Development",
+      name: "Web & Fullstack",
       iconName: "Code2",
-      description: "Pengembangan aplikasi web end-to-end dengan arsitektur modern, performa tinggi, dan clean code.",
       items: [
-        { name: "Laravel", level: "Advanced", highlight: true, description: "MVC, Eloquent ORM, Service Layer, Blade" },
-        { name: "PHP", level: "Advanced", highlight: true, description: "OOP, modern PHP 8+, PSR Standards" },
-        { name: "Next.js", level: "Advanced", highlight: true, description: "App Router, Server Components, SSR/SSG" },
-        { name: "React.js", level: "Advanced", highlight: true, description: "Hooks, Context API, Modular Components" },
-        { name: "REST API", level: "Expert", highlight: true, description: "API Design, Endpoint Routing, JSON Specs" },
-        { name: "Tailwind CSS", level: "Advanced", highlight: false, description: "Responsive Utility-First Styling" },
-        { name: "JavaScript / TypeScript", level: "Advanced", highlight: false, description: "ES6+, Async/Await, Strict Types" }
+        { name: "Laravel", level: "Menengah", experience: "± 2 tahun", highlight: true },
+        { name: "PHP", level: "Menengah", experience: "± 2 tahun", highlight: true },
+        { name: "Next.js", level: "Menengah", experience: "± 1 tahun", highlight: true },
+        { name: "React.js", level: "Menengah", experience: "± 1 tahun", highlight: true },
+        { name: "REST API", level: "Menengah", experience: "± 2 tahun", highlight: true },
+        { name: "Tailwind CSS", level: "Menengah", experience: "± 1-2 tahun", highlight: false },
+        { name: "JavaScript / TypeScript", level: "Menengah", experience: "± 2 tahun", highlight: false }
       ]
     },
     {
       id: "database",
-      name: "Database & Access Control",
+      name: "Database & Keamanan",
       iconName: "Database",
-      description: "Pengelolaan struktur data terstruktur, optimasi relasi, dan sistem otentikasi serta otorisasi yang aman.",
       items: [
-        { name: "PostgreSQL", level: "Advanced", highlight: true, description: "Relational modeling, indexing, queries" },
-        { name: "MySQL", level: "Advanced", highlight: true, description: "Normalization, stored procedures, joins" },
-        { name: "Laravel Sanctum", level: "Expert", highlight: true, description: "Token authentication, SPA security" },
-        { name: "Role & Permission (RBAC)", level: "Expert", highlight: true, description: "Multi-user access control, policy gates" },
-        { name: "Database Migration", level: "Advanced", highlight: false, description: "Schema versioning, seeding, rollback" }
+        { name: "PostgreSQL", level: "Menengah", experience: "± 1 tahun", highlight: true },
+        { name: "MySQL", level: "Menengah", experience: "± 2 tahun", highlight: true },
+        { name: "Laravel Sanctum", level: "Menengah", experience: "± 1 tahun", highlight: true },
+        { name: "Role & Permission (RBAC)", level: "Menengah", experience: "± 1 tahun", highlight: true }
       ]
     },
     {
       id: "testing",
-      name: "Testing & Dokumentasi",
+      name: "Testing & Tools",
       iconName: "FileCheck2",
-      description: "Jaminan mutu aplikasi melalui pengujian fungsional terarah dan dokumentasi teknis yang jelas.",
       items: [
-        { name: "Functional Testing", level: "Advanced", highlight: true, description: "End-to-end user scenario validation" },
-        { name: "Debugging & Troubleshooting", level: "Expert", highlight: true, description: "Error isolation, log analysis" },
-        { name: "API Documentation", level: "Advanced", highlight: true, description: "Postman collections, Swagger/OpenAPI" },
-        { name: "Git / GitLab / GitHub", level: "Advanced", highlight: false, description: "Branching strategies, merge requests" }
+        { name: "Functional Testing & Debugging", level: "Menengah", experience: "± 2 tahun", highlight: true },
+        { name: "Git / GitLab", level: "Menengah", experience: "± 2 tahun", highlight: true },
+        { name: "Android Studio", level: "Menengah", experience: "± 1-2 tahun", highlight: true },
+        { name: "API Documentation", level: "Menengah", experience: "± 1 tahun", highlight: false },
+        { name: "Postman", level: "Menengah", experience: "± 1-2 tahun", highlight: false }
       ]
     },
     {
       id: "admin-data",
-      name: "Administrasi & Manajemen Data",
+      name: "Administrasi & Data",
       iconName: "ClipboardList",
-      description: "Akurasi tinggi dalam verifikasi data, konsistensi pelaporan, dan tata kelola arsip digital.",
       items: [
-        { name: "Data Entry & Validation", level: "Expert", highlight: true, description: "Pemeriksaan konsistensi & integritas data" },
-        { name: "Document Management", level: "Advanced", highlight: true, description: "Pengarsipan digital & standardisasi format" },
-        { name: "Reporting & Analytics", level: "Advanced", highlight: true, description: "Penyusunan laporan berkala & rekapitulasi" },
-        { name: "Pemeriksaan Sensus Lapangan", level: "Advanced", highlight: false, description: "Standar metodologi BPS" }
+        { name: "Data Entry & Data Validation", level: "Menengah", experience: "Pengalaman kerja", highlight: true },
+        { name: "Document Management", level: "Menengah", experience: "Pengalaman kerja", highlight: false },
+        { name: "Reporting", level: "Menengah", experience: "Pengalaman kerja", highlight: false },
+        { name: "Microsoft Office (Excel/Word)", level: "Menengah", experience: "Pengalaman kerja", highlight: true }
       ]
     },
     {
       id: "tools",
-      name: "Tools & Software",
+      name: "Desain & Kreatif",
       iconName: "Wrench",
-      description: "Perangkat lunak penunjang produktivitas, desain antarmuka, dan pengembangan sistem.",
       items: [
-        { name: "Microsoft Excel", level: "Expert", highlight: true, description: "VLOOKUP, Pivot Table, Rumus Logika" },
-        { name: "Microsoft Word & PPT", level: "Expert", highlight: false, description: "Dokumen formal & presentasi bisnis" },
-        { name: "Android Studio", level: "Intermediate", highlight: false, description: "Java/Kotlin, Gradle, Layout XML" },
-        { name: "Figma & Canva", level: "Advanced", highlight: false, description: "UI Wireframing, mockup, aset visual" },
-        { name: "Postman", level: "Expert", highlight: true, description: "Testing endpoint, environment variables" }
+        { name: "Figma", level: "Menengah", experience: "± 1-2 tahun", highlight: true },
+        { name: "Canva", level: "Menengah", experience: "± 1-2 tahun", highlight: false },
+        { name: "UI Wireframing & Mockup", level: "Menengah", experience: "± 1-2 tahun", highlight: false }
       ]
     }
   ] as SkillCategory[],
@@ -141,20 +134,20 @@ export const CV_DATA = {
       roleOrDegree: "Fullstack Developer",
       organization: "Universitas Muhammadiyah Surakarta (UMS)",
       period: "2024 - 2025",
-      location: "Surakarta, Jawa Tengah",
-      status: "Selesai & Diterapkan",
+      location: "Surakarta",
+      status: "Selesai",
       featured: true,
+      summary: "Membangun sistem informasi peminjaman fasilitas kampus berbasis web secara mandiri (analisis, backend Laravel, frontend, hingga pengujian).",
       description: [
         "Mengembangkan sistem informasi peminjaman tempat dan fasilitas kampus secara mandiri dari tahap awal hingga produksi.",
         "Melakukan analisis kebutuhan stakeholder, perancangan diagram alir, skema database relasional, dan arsitektur UI/UX.",
         "Membangun frontend dan backend terintegrasi untuk mengelola siklus pengguna, ketersediaan fasilitas, reservasi jadwal, dan verifikasi birokrasi.",
         "Melaksanakan pengujian fungsional sistem, penanganan bug, serta mengoordinasikan proses deployment ke server kampus."
       ],
-      skills: ["Laravel", "PHP", "MySQL", "REST API", "Tailwind CSS", "Role & Permission", "Functional Testing"],
+      skills: ["Laravel", "PHP", "MySQL", "REST API", "Tailwind CSS"],
       metrics: [
-        { label: "Pengembangan", value: "Mandiri (End-to-End)" },
-        { label: "Modul", value: "Fasilitas, Jadwal & Approval" },
-        { label: "Dampak", value: "Digitalisasi Birokrasi Manual" }
+        { label: "Cakupan", value: "End-to-End Mandiri" },
+        { label: "Modul", value: "Fasilitas & Jadwal" }
       ]
     },
     {
@@ -162,64 +155,66 @@ export const CV_DATA = {
       category: "work",
       title: "Sistem Informasi Manajemen MyBeasiswa",
       roleOrDegree: "Fullstack Developer",
-      organization: "MyBeasiswa - Universitas Muhammadiyah Surakarta",
+      organization: "MyBeasiswa - UMS",
       period: "Selesai Juni 2026",
-      location: "Surakarta, Jawa Tengah",
-      status: "Produksi & Aktif",
+      location: "Surakarta",
+      status: "Aktif",
       featured: true,
+      summary: "Mengembangkan platform manajemen beasiswa berbasis REST API Laravel & frontend Next.js dengan integrasi database PostgreSQL.",
       description: [
         "Mengembangkan sistem informasi manajemen beasiswa berbasis web modern menggunakan kombinasi Laravel dan Next.js.",
         "Membangun arsitektur RESTful API yang aman dengan integrasi database PostgreSQL dan otentikasi Laravel Sanctum.",
         "Merancang sistem hak akses bertingkat (Role & Permission) untuk pendaftar mahasiswa, verifikator berkas, dan pimpinan pengambil keputusan.",
-        "Menyusun dokumentasi API komprehensif dan menjalankan pengujian sistem fungsional untuk memastikan reliabilitas data beasiswa bernilai tinggi."
+        "Menyusun dokumentasi API komprehensif dan menjalankan pengujian sistem fungsional untuk memastikan reliabilitas data."
       ],
-      skills: ["Laravel", "Next.js", "PostgreSQL", "Laravel Sanctum", "REST API", "RBAC", "Postman", "GitLab"],
+      skills: ["Laravel", "Next.js", "PostgreSQL", "Laravel Sanctum", "REST API"],
       metrics: [
-        { label: "Arsitektur", value: "Decoupled (Next.js + Laravel)" },
-        { label: "Keamanan", value: "Sanctum Multi-Role RBAC" },
-        { label: "Database", value: "PostgreSQL High Integrity" }
+        { label: "Arsitektur", value: "Next.js + Laravel" },
+        { label: "Keamanan", value: "Sanctum Multi-Role" }
       ]
     },
     {
       id: "bps-sensus-2026",
       category: "work",
       title: "Mitra Sensus Ekonomi 2026",
-      roleOrDegree: "Mitra Petugas Pendataan & Verifikasi",
+      roleOrDegree: "Petugas Pendataan & Verifikasi",
       organization: "Badan Pusat Statistik (BPS)",
       period: "2026 (3 Bulan)",
-      location: "Wilayah Penugasan BPS",
+      location: "BPS Wilayah",
       status: "Selesai",
       featured: false,
+      summary: "Pendataan primer dan pemeriksaan konsistensi informasi usaha di lapangan sesuai metodologi resmi BPS.",
       description: [
         "Melakukan pendataan primer dan verifikasi langsung informasi entitas usaha di lapangan sesuai metodologi baku BPS.",
         "Memeriksa kelengkapan, validitas logis, serta konsistensi data sebelum dilakukan input ke sistem pusat.",
-        "Melakukan koordinasi intensif dengan koordinator tim lapangan dan pengawas guna memastikan target enumerasi tercapai 100% tepat waktu."
+        "Melakukan koordinasi intensif dengan koordinator tim lapangan guna memastikan target enumerasi tercapai 100% tepat waktu."
       ],
-      skills: ["Data Verification", "Data Quality Control", "Field Coordination", "Reporting", "Analytical Thinking"],
+      skills: ["Verifikasi Data", "Quality Control", "Koordinasi Lapangan"],
       metrics: [
         { label: "Periode", value: "3 Bulan Intensif" },
-        { label: "Ketepatan Data", value: "Standar Metodologi BPS" }
+        { label: "Fokus", value: "Akurasi Metodologi BPS" }
       ]
     },
     {
       id: "plus-nexus-android",
       category: "work",
-      title: "Aplikasi Mobile Android & Monetisasi",
+      title: "Pengembangan Aplikasi Android",
       roleOrDegree: "Android Developer",
       organization: "PT Plus Nexus",
       period: "April 2023 - Juni 2023",
       location: "Indonesia",
       status: "Selesai",
       featured: false,
+      summary: "Mengembangkan fitur antarmuka aplikasi Android di Android Studio dan mengintegrasikan Google AdMob SDK.",
       description: [
         "Mengembangkan fitur aplikasi Android interaktif menggunakan lingkungan Android Studio.",
-        "Mengintegrasikan Google AdMob SDK (banner, interstitial, rewarded) secara presisi dengan kepatuhan kebijakan Google.",
-        "Melakukan debugging performa, meminimalisir crash rate, serta menganalisis metrik engagement pengguna harian."
+        "Mengintegrasikan Google AdMob SDK secara presisi sesuai panduan kebijakan Google.",
+        "Melakukan debugging performa dan memantau interaksi pengguna harian."
       ],
-      skills: ["Android Studio", "Java / Kotlin", "Google AdMob", "Debugging", "Mobile UI", "Engagement Analytics"],
+      skills: ["Android Studio", "Java", "Google AdMob", "Debugging"],
       metrics: [
-        { label: "Integrasi", value: "Google AdMob SDK" },
-        { label: "Fokus", value: "Performa & User Retention" }
+        { label: "Platform", value: "Android Studio" },
+        { label: "Monetisasi", value: "Google AdMob SDK" }
       ]
     },
 
@@ -228,22 +223,22 @@ export const CV_DATA = {
       id: "project-lazismu-zakat",
       category: "project",
       title: "Sistem Hybrid Manajemen Zakat Lazismu (Tugas Akhir)",
-      roleOrDegree: "Lead Designer & Developer (Final Project)",
-      organization: "Program Studi Teknik Informatika UMS x Lazismu",
+      roleOrDegree: "Pengembang Utama (Tugas Akhir)",
+      organization: "Informatika UMS x Lazismu",
       period: "2023 - 2024",
-      location: "Surakarta, Jawa Tengah",
-      status: "Tugas Akhir S1 - Nilai A",
+      location: "Surakarta",
+      status: "Tugas Akhir S1",
       featured: true,
+      summary: "Perancangan sistem manajemen zakat terintegrasi (portal web amil dan aplikasi donatur) dengan transparansi pencatatan donasi.",
       description: [
         "Perancangan dan implementasi sistem komprehensif manajemen zakat, infak, dan sedekah berbasis arsitektur hybrid (web portal administrasi & mobile interface donatur).",
         "Mengintegrasikan modul pencatatan muzakki, kriteria mustahik, verifikasi penyaluran bantuan, serta pelaporan keuangan donasi secara transparan.",
-        "Menyediakan dashboard analytics untuk memantau tren penghimpunan dana dan histori transaksi real-time."
+        "Menyediakan dashboard ringkas untuk memantau tren penghimpunan dana dan histori transaksi."
       ],
-      skills: ["Laravel", "REST API", "Database Design", "Mobile Integration", "Financial Reporting", "UI/UX Figma"],
+      skills: ["Laravel", "REST API", "Database Design", "UI/UX Figma"],
       metrics: [
-        { label: "Jenis Proyek", value: "Sistem Hybrid Web & Mobile" },
-        { label: "Target Pengguna", value: "Amil Lazismu, Muzakki & Mustahik" },
-        { label: "Nilai TA", value: "Sangat Memuaskan (A)" }
+        { label: "Platform", value: "Web & Mobile Hybrid" },
+        { label: "Fokus", value: "Transparansi Penyaluran Zakat" }
       ]
     },
 
@@ -253,20 +248,20 @@ export const CV_DATA = {
       category: "organization",
       title: "Sekretaris Bidang Komunikasi, Informatika & Informasi",
       roleOrDegree: "Sekretaris Bidang Kominfo",
-      organization: "Pimpinan Daerah Pemuda Muhammadiyah (PDPM) Kab. Wonogiri",
+      organization: "PDPM Kabupaten Wonogiri",
       period: "2020 - Sekarang",
-      location: "Kabupaten Wonogiri, Jawa Tengah",
+      location: "Wonogiri",
       status: "Aktif",
       featured: true,
+      summary: "Mengelola tata kelola komunikasi publik, publikasi digital, dan sistem informasi organisasi tingkat daerah.",
       description: [
         "Memimpin tata kelola komunikasi publik, publikasi digital, dan sistem informasi organisasi tingkat daerah.",
         "Mengelola dokumentasi resmi, arsip korespondensi digital, dan rilis warta kegiatan organisasi ke masyarakat.",
-        "Merancang strategi diseminasi informasi melalui media sosial dan platform web untuk meningkatkan keterlibatan anggota."
+        "Merancang strategi diseminasi informasi melalui media sosial dan platform web."
       ],
-      skills: ["Digital Communication", "Arsip & Administrasi", "Public Relations", "Team Leadership", "Content Management"],
+      skills: ["Komunikasi Digital", "Pengarsipan Dokumen", "Kerja Sama Tim"],
       metrics: [
-        { label: "Masa Pengabdian", value: "4+ Tahun (Aktif)" },
-        { label: "Cakupan", value: "Tingkat Kabupaten Wonogiri" }
+        { label: "Masa Jabatan", value: "4+ Tahun (Aktif)" }
       ]
     },
     {
@@ -276,18 +271,18 @@ export const CV_DATA = {
       roleOrDegree: "Ketua Bidang Organisasi",
       organization: "Ikatan Mahasiswa Muhammadiyah (IMM)",
       period: "2021 - 2022",
-      location: "Surakarta, Jawa Tengah",
+      location: "Surakarta",
       status: "Purna Tugas",
       featured: false,
+      summary: "Bertanggung jawab atas konsolidasi internal pengurus, administrasi musyawarah kerja, dan evaluasi laporan berkala.",
       description: [
         "Bertanggung jawab atas konsolidasi internal, kaderisasi anggota, serta tata tertib organisasi mahasiswa.",
-        "Memfasilitasi musyawarah kerja tahunan, memantau kinerja divisi, dan menyelesaikan problematika manajerial.",
-        "Menyusun evaluasi kinerja struktural dan laporan pertanggungjawaban (LPJ) periodik secara terstruktur."
+        "Memfasilitasi musyawarah kerja tahunan dan membantu koordinasi antar divisi.",
+        "Menyusun evaluasi kinerja struktural dan laporan pertanggungjawaban (LPJ) periodik."
       ],
-      skills: ["Organizational Leadership", "Konsolidasi Tim", "Manajemen Konflik", "Penyusunan LPJ", "Event Management"],
+      skills: ["Kepemimpinan Organisasi", "Manajemen Tim", "Penyusunan LPJ"],
       metrics: [
-        { label: "Jabatan", value: "Ketua Bidang Organisasi" },
-        { label: "Periode", value: "2021 - 2022" }
+        { label: "Jabatan", value: "Ketua Bidang" }
       ]
     },
 
@@ -300,46 +295,46 @@ export const CV_DATA = {
       organization: "MySkill Indonesia",
       period: "2024",
       location: "Online",
-      status: "Bersertifikat Resmi",
-      featured: true,
+      status: "Bersertifikat",
+      summary: "Pelatihan pengembangan web berbasis JavaScript modern, DOM manipulation, asynchronous programming, dan best practices Clean Code.",
       description: [
         "Pelatihan intensif pengembangan aplikasi web berbasis JavaScript modern, DOM manipulation, asynchronous programming, dan best practices Clean Code.",
         "Mengerjakan mini-project frontend interaktif dengan standarisasi industri."
       ],
-      skills: ["JavaScript ES6+", "DOM Manipulation", "Async/Await", "Frontend Architecture"],
-      metrics: [{ label: "Penerbit", value: "MySkill Indonesia" }, { label: "Tahun", value: "2024" }]
+      skills: ["JavaScript ES6+", "DOM Manipulation", "Async/Await"],
+      metrics: [{ label: "Penyelenggara", value: "MySkill" }]
     },
     {
       id: "cert-myskill-data-science",
       category: "certification",
-      title: "Online Course Data Science & Analytics",
+      title: "Course Data Science & Analytics",
       roleOrDegree: "Certified Student",
       organization: "MySkill Indonesia",
       period: "2024",
       location: "Online",
-      status: "Bersertifikat Resmi",
-      featured: false,
+      status: "Bersertifikat",
+      summary: "Mempelajari dasar pembersihan data (data cleansing), analisis statistik deskriptif, dan interpretasi data.",
       description: [
         "Mempelajari dasar-dasar pembersihan data (data cleansing), analisis statistik deskriptif, dan interpretasi pola data untuk pengambilan keputusan bisnis."
       ],
-      skills: ["Data Cleaning", "Data Analytics", "Statistical Analysis", "Data Visualization"],
-      metrics: [{ label: "Penerbit", value: "MySkill Indonesia" }, { label: "Tahun", value: "2024" }]
+      skills: ["Data Cleaning", "Statistik Deskriptif"],
+      metrics: [{ label: "Penyelenggara", value: "MySkill" }]
     },
     {
       id: "cert-edspert-react",
       category: "certification",
-      title: "Webinar & Workshop React JS Fundamental to Advanced",
-      roleOrDegree: "Participant & Certified",
+      title: "Webinar React JS Fundamental",
+      roleOrDegree: "Peserta & Bersertifikat",
       organization: "Edspert.id",
       period: "2023",
       location: "Online",
-      status: "Bersertifikat Resmi",
-      featured: false,
+      status: "Bersertifikat",
+      summary: "Pendalaman konsep komponen React, state management, hooks, dan integrasi consumable API pihak ketiga.",
       description: [
         "Pendalaman konsep arsitektur React, state management, hooks lifecycle, dan integrasi consumable API pihak ketiga."
       ],
-      skills: ["React.js", "Hooks", "Component Lifecycle", "API Integration"],
-      metrics: [{ label: "Penerbit", value: "Edspert.id" }, { label: "Tahun", value: "2023" }]
+      skills: ["React.js", "Hooks", "API Consumption"],
+      metrics: [{ label: "Penyelenggara", value: "Edspert.id" }]
     }
   ] as ExperienceItem[]
 };

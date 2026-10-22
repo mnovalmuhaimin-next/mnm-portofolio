@@ -84,10 +84,10 @@ export const Hero: React.FC<HeroProps> = ({ darkMode, onOpenCvModal }) => {
             </div>
 
             {/* Brief Bio */}
-            <p className={`text-base sm:text-lg leading-relaxed ${
+            <p className={`text-sm sm:text-base leading-relaxed ${
               darkMode ? 'text-slate-300' : 'text-slate-600'
             }`}>
-              Lulusan <strong>S1 Teknik Informatika UMS (IPK 3.35/4.00)</strong> dengan keahlian dalam perancangan sistem informasi terintegrasi, arsitektur RESTful API, dan optimasi basis data relasional. Berpengalaman mandiri mengawal proyek dari riset kebutuhan hingga deployment produksi.
+              Lulusan <strong>S1 Teknik Informatika UMS</strong> dengan fokus pengembangan sistem informasi berbasis web (Laravel & Next.js), administrasi sistem, dan pengelolaan basis data.
             </p>
 
             {/* Quick Location & Direct Contact Action Tags */}
