@@ -91,7 +91,14 @@ export const Footer: React.FC<FooterProps> = ({ darkMode }) => {
           <div className="flex items-center gap-2">
             <span>Portfolio Profesional</span>
             <span>•</span>
-            <span className="text-indigo-400 font-medium">mnm-project.site</span>
+            <a
+              href={CV_DATA.personal.portfolioUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="text-indigo-400 font-medium hover:underline"
+            >
+              {CV_DATA.personal.portfolioDomain}
+            </a>
           </div>
         </div>
 

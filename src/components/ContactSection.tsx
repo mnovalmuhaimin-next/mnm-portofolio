@@ -199,7 +199,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ darkMode }) => {
                 <div className="flex items-center gap-2.5">
                   <Globe className="w-4 h-4 text-indigo-400" />
                   <span className={`text-xs font-semibold ${darkMode ? 'text-slate-200' : 'text-slate-800'}`}>
-                    mnm-project.site
+                    {CV_DATA.personal.portfolioDomain}
                   </span>
                 </div>
                 <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-indigo-400 transition-colors" />

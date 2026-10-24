@@ -2,8 +2,8 @@
 
 Portofolio profesional resmi **Muhammad Noval Muhaimin** — Fullstack Developer, Administrasi Sistem & Data Management berbasis di Surakarta, Jawa Tengah.
 
-🌐 **Domain Produksi:** [mnm-project.site](https://mnm-project.site)  
-💼 **LinkedIn:** [linkedin.com/in/m-noval-muhaimin-5716aa2a0](https://linkedin.com/in/m-noval-muhaimin-5716aa2a0)  
+🌐 **Website Portofolio:** [mnm-portofolio.vercel.app](https://mnm-portofolio.vercel.app/)  
+💼 **LinkedIn:** [www.linkedin.com/in/muhammad-noval-muhaimin](https://www.linkedin.com/in/muhammad-noval-muhaimin)  
 📧 **Email:** mnovalmuhaimin@gmail.com  
 📱 **WhatsApp:** [Chat Langsung di WhatsApp](https://wa.me/6281326690102?text=Halo%20Noval,%20saya%20melihat%20portofolio%20Anda%20dan%20tertarik%20untuk%20berdiskusi.)
 

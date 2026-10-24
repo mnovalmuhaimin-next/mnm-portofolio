@@ -146,15 +146,25 @@ export const CvPreviewModal: React.FC<CvPreviewModalProps> = ({ isOpen, onClose,
                   <span>WhatsApp (Chat Langsung)</span>
                 </a>
                 <span>•</span>
-                <span className="flex items-center gap-1">
+                <a
+                  href={CV_DATA.personal.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-1 hover:underline"
+                >
                   <Linkedin className="w-3.5 h-3.5 text-indigo-600" />
-                  linkedin.com/in/{CV_DATA.personal.linkedinUsername}
-                </span>
+                  <span>www.linkedin.com/in/{CV_DATA.personal.linkedinUsername}</span>
+                </a>
                 <span>•</span>
-                <span className="flex items-center gap-1">
+                <a
+                  href={CV_DATA.personal.portfolioUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-1 hover:underline"
+                >
                   <Globe className="w-3.5 h-3.5 text-indigo-600" />
-                  {CV_DATA.personal.portfolioDomain}
-                </span>
+                  <span>{CV_DATA.personal.portfolioDomain}</span>
+                </a>
               </div>
             </div>
 
